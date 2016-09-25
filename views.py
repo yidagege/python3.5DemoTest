@@ -1,5 +1,6 @@
-
-from django.http import HttpResponse
+# -*- coding: utf-8 -*-
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("hello,world!")
+    return render(request,"index.html")
+
