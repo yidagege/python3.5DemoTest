@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-
+from block.models import Block
 
 def index(request):
 	block_infos = Block.objects.all().order_by("-id")
