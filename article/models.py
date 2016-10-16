@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
 from django.db import models
 from block.models import Block
+import sys 
 
 class Article(models.Model):
+	reload(sys)
+	sys.setdefaultencoding('utf-8')
 	block = models.ForeignKey(Block,verbose_name=u"版块id")
 	title = models.CharField(u"版块名称",max_length=100)
 	content = models.CharField(u"版块描述",max_length=1000)
