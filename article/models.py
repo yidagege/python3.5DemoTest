@@ -7,9 +7,9 @@ import sys
 class Article(models.Model):
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
-	block = models.ForeignKey(Block,verbose_name=u"版块id")
-	title = models.CharField(u"版块名称",max_length=100)
-	content = models.CharField(u"版块描述",max_length=1000)
+	title = models.CharField(u"文章标题",max_length=100)
+	block = models.ForeignKey(Block,verbose_name=u"所属版块")
+	content = models.CharField(u"内容描述",max_length=1000)
 	status = models.IntegerField(u"状态",choices=((0,u"正常"),(-1,u"删除")))
 
 	create_timestamp = models.DateTimeField(u"创建时间",auto_now_add=True)
