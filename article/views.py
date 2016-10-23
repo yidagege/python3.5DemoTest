@@ -16,7 +16,8 @@ def article_publish(request,block_id):
 		article_objs = Article.objects.filter(block=block,status=0).order_by("-id")
 		return render(request,"article_publish.html",{"articles":article_objs,"b":block})
 	else:
-		if Q(request.POST["title"] == "")|Q(request.POST["content"] == ""):
+		# Q(request.POST["title"] == "")|Q(request.POST["content"] == "")
+		if (request.POST["title"] == "") or (request.POST["content"] == ""):
 			return redirect("/article/publish/%s" % block_id)
 		else:
 			title = request.POST["title"]
