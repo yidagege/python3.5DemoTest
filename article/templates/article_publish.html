@@ -2,10 +2,15 @@
 
 {% extends "base.html" %}
 {% block content %}
-{% if error %}
-  <div class="alert alert-danger">{{ error }}
-  </div>
-{% endif %}
+{% for field in form %}
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <div class="alert alert-danger">{{field.label}}:{{ error }}
+    {% endfor %}
+  {% endif %}
+<!--   <div class="alert alert-danger">{{ error }}
+  </div> -->
+{% endfor %}
 <ol class="breadcrumb">
 	<li><a href="/">首页</a></li>
   <li><a href="/article/list/{{b.id}}">{{b.name}}</a></li>
