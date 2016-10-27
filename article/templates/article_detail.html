@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ol class="breadcrumb">
+	<li><a href="/">首页</a></li>
+	<li><a href="/">列表</a></li>
+	<!-- /article/list/{{block.id}} -->
+	<li class="active">{{a.title}}</li>
+</ol>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>标题</th>
+			<th>作者</th>
+			<th>创建时间</th>
+			<th>最后更新时间</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{ a.title }}</a></td>
+			<td>{{ a.content }}</td>
+			<td>{{ a.create_timestamp|date:"Y-m-d P" }}</td>
+			<td>{{ a.last_update_timestamp|date:"Y-m-d P" }}</td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}
