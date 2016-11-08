@@ -25,7 +25,24 @@
 		{% endfor %}
 	</tbody>
 </table>
-
+<nav>
+	<ul class="pagination">
+	{% for page in p.num_pages %}
+	    <li>
+			<a href="?page_no=page">&laquo;</a>
+		</li>
+	{% endfor %}
+		<!-- <li>
+			<a href="?page_no=page_no-1">&laquo;</a>
+		</li>
+		<li class="active">
+			<a href="?page_no=page_no">{{page_no}}</a>
+		</li>
+		<li>
+			<a href="?page_no=page_no+1">&raquo;</a>
+		</li> -->
+	</ul>
+</nav>
 
 <a href="/article/publish/{{b.id}}" class="btn btn-primary">发表文章</a>
 <br />

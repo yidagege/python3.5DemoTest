@@ -3,11 +3,16 @@ from django.shortcuts import render,redirect
 from block.models import Block
 from models import Article
 from forms import ArticleForm
+from django.core.paginator import Paginator
 
 def article_list(request,block_id):
 	block_id = int(block_id)
 	block = Block.objects.get(id=block_id)
-	article_objs = Article.objects.filter(block=block,status=0).order_by("-id")
+	all_articles = Article.objects.filter(block=block,status=0).order_by("-id")
+	p = Paginator(all_articles,3)
+	page_no = int(request.GET.get("page_no","1"))
+	page = p.page(page_no)
+	article_objs = page.object_list
 	return render(request,"article_list.html",{"articles":article_objs,"b":block})
 
 def article_publish(request,block_id):
@@ -26,3 +31,7 @@ def article_publish(request,block_id):
 			return redirect("/article/list/%s" % block_id)
 		else:
 			return render(request,"article_publish.html",{"b":block,"form":form})
+
+def article_detail(request,aid):
+	article = Article.objects.get(id=aid)
+	return render(request,"article_detail.html",{"a":article})
