@@ -26,3 +26,8 @@ def article_publish(request,block_id):
 			return redirect("/article/list/%s" % block_id)
 		else:
 			return render(request,"article_publish.html",{"b":block,"form":form})
+
+def article_detail(request,article_id):
+	article_id = int(article_id)
+	article = Article.objects.get(id=article_id)
+	return render(request,"article_detail.html",{"a":article})
