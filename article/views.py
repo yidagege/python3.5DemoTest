@@ -3,11 +3,15 @@ from django.shortcuts import render,redirect
 from block.models import Block
 from models import Article
 from forms import ArticleForm
+from django.core.paginator import Paginator
 
 def article_list(request,block_id):
 	block_id = int(block_id)
 	block = Block.objects.get(id=block_id)
-	article_objs = Article.objects.filter(block=block,status=0).order_by("-id")
+	article_objs_all = Article.objects.filter(block=block,status=0).order_by("-id")
+	p=Paginator(article_objs_all,5)
+	page = p.page(1)
+	article_objs=page.object_list
 	return render(request,"article_list.html",{"articles":article_objs,"b":block})
 
 def article_publish(request,block_id):
