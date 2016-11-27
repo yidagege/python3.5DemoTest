@@ -6,7 +6,7 @@ from forms import ArticleForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def article_list(request,block_id):
-	limit = 5
+	limit = 2
 	page = int(request.GET.get("page_no",1))
 	block = Block.objects.get(id=int(block_id))
 	article_objs_all = Article.objects.filter(block=block, status=0).order_by("-id")
